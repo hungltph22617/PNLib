@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_theloai"
+            android:icon="@drawable/theloai"
+            android:title="Thể loại"/>
+        <item android:id="@+id/nav_book"
+            android:icon="@drawable/book"
+            android:title="Sách"/>
+        <item android:id="@+id/nav_hoadon"
+            android:icon="@drawable/hoadon"
+            android:title="Phiếu mượn"/>
+        <item android:id="@+id/nav_thanhvien"
+            android:icon="@drawable/thanhvien"
+            android:title="Thành viên"/>
+    </group>
+    <item android:title="@string/nav_thongke">
+        <menu>
+            <item android:id="@+id/nav_topsp"
+                android:title="Top sản phẩm bán nhiều nhất"
+                android:icon="@drawable/thongke"/>
+            <item android:id="@+id/nav_doanhthu"
+                android:title="Doanh thu"
+                android:icon="@drawable/doanhthu"/>
+        </menu>
+    </item>
+    <item android:title="@string/nav_nguoidung">
+        <menu>
+            <item android:id="@+id/nav_tnguoidung"
+                android:title="Thêm người dùng"
+                android:icon="@drawable/nguoi"/>
+            <item android:id="@+id/nav_doimk"
+                android:title="Đổi mật khẩu"
+                android:icon="@drawable/doimk"/>
+            <item android:id="@+id/nav_logout"
+                android:title="Đăng xuất"
+                android:icon="@drawable/logout"/>
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:background="#556b2f"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:text="Sửa phiếu mượn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20sp"
+            android:text="Thành viên: "
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"/>
+        <Spinner
+            android:layout_marginLeft="5dp"
+            android:id="@+id/spnstv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20sp"
+            android:text="Sách: "
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"/>
+        <Spinner
+            android:layout_marginLeft="5dp"
+            android:id="@+id/spmssach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20sp"
+            android:text="Giá tiền:"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/edtsgt"
+            android:textSize="20sp"
+            android:text=""
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="20sp"
+            android:text="VNĐ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_marginRight="20dp"
+            android:id="@+id/btnspm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sửa" />
+    </LinearLayout>
+
+</LinearLayout>
