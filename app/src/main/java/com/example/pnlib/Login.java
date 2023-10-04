@@ -17,7 +17,6 @@ import com.google.android.material.textfield.TextInputEditText;
 public class Login extends AppCompatActivity {
     Button login;
     TextInputEditText pass, account;
-    TextView txtsignup;
     ThuthuDao dao;
 
     @Override
@@ -27,7 +26,6 @@ public class Login extends AppCompatActivity {
         pass = findViewById(R.id.pass);
         account = findViewById(R.id.account);
         login = findViewById(R.id.login);
-        txtsignup = findViewById(R.id.txtsignup);
         dao = new ThuthuDao();
         SharedPreferences preferences = getSharedPreferences("USER_FILE", MODE_PRIVATE);
         String u = preferences.getString("USERNAME", "");
@@ -44,19 +42,11 @@ public class Login extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
-                        Toast.makeText(Login.this, "Bạn cần nhập user && password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Bạn cần nhập account && password", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     Log.i("CHECK", e.toString());
                 }
-            }
-        });
-        txtsignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Login.this, Signup.class);
-                startActivity(intent);
-                finish();
             }
         });
     }

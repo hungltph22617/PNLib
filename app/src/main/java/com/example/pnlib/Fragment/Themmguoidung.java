@@ -1,65 +1,104 @@
 package com.example.pnlib.Fragment;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pnlib.Adapter.TndungAdapter;
+import com.example.pnlib.Dao.ThuthuDao;
 import com.example.pnlib.R;
+import com.example.pnlib.model.acccount;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Themmguoidung#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class Themmguoidung extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    RecyclerView rectnd;
+    FloatingActionButton fltnd;
+    ThuthuDao dao;
+    TndungAdapter adapter;
+    ArrayList<acccount> list = new ArrayList<>();
     public Themmguoidung() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Themmguoidung.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Themmguoidung newInstance(String param1, String param2) {
-        Themmguoidung fragment = new Themmguoidung();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_themmguoidung, container, false);
+        View view = inflater.inflate(R.layout.fragment_themmguoidung, container, false);
+        rectnd = view.findViewById(R.id.recytnd);
+        fltnd = view.findViewById(R.id.fltnd);
+        Loadrecynd();
+        fltnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addnd();
+            }
+        });
+        return view;
+    }
+
+    private void addnd() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.addtndung, null);
+        builder.setView(view);
+        Dialog dialog = builder.create();
+        dialog.show();
+        TextInputEditText edtmatt = view.findViewById(R.id.edtmatt);
+        TextInputEditText edttentt = view.findViewById(R.id.edttentt);
+        TextInputEditText edtmktt = view.findViewById(R.id.edtmktt);
+        Button btntnd = view.findViewById(R.id.btntnd);
+        Button btnhnd = view.findViewById(R.id.btnhnd);
+        btntnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mand = edtmatt.getText().toString();
+                String tennd = edttentt.getText().toString();
+                String mknd = edtmktt.getText().toString();
+                if(mand.equals("") || tennd.equals("") || mknd.equals("")){
+                    Toast.makeText(getActivity(), "Không được để trống", Toast.LENGTH_SHORT).show();
+                }else{
+                    boolean check= dao.AddAccount(getActivity(), edtmatt.getText().toString(), edttentt.getText().toString(), edtmktt.getText().toString());
+                    if(check){
+                        Toast.makeText(getActivity(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        edtmatt.setText("");
+                        edttentt.setText("");
+                        edtmktt.setText("");
+                        Loadrecynd();
+                    }else {
+                        Toast.makeText(getActivity(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        btnhnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtmatt.setText("");
+                edttentt.setText("");
+                edtmktt.setText("");
+            }
+        });
+    }
+    public void Loadrecynd(){
+        dao = new ThuthuDao();
+        list = dao.Listtt(getActivity());
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        rectnd.setLayoutManager(manager);
+        adapter = new TndungAdapter(getActivity(), list);
+        rectnd.setAdapter(adapter);
     }
 }

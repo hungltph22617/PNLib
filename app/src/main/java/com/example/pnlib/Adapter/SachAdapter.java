@@ -104,6 +104,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
                 TextInputEditText edtanh = v.findViewById(R.id.edtanh);
                 Button btnss = v.findViewById(R.id.btnss);
                 Spinner spnnmls = v.findViewById(R.id.spnnmls);
+                edtts.setText(book.getTens());
+                edtgs.setText(String.valueOf(book.getGts()));
+                edtanh.setText(book.getAnh());
                 btnss.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

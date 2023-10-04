@@ -55,11 +55,13 @@ public class LoaisachAdapter extends RecyclerView.Adapter<LoaisachAdapter.ViewHo
                 dialog.show();
                 TextInputEditText edttl = v.findViewById(R.id.edttl);
                 Button btnuls = v.findViewById(R.id.btnuls);
+
+                edttl.setText(loaisach.getTentl());
                 btnuls.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String ttl = edttl.getText().toString();
-                        if(ttl.equals("")){
+                        //edttl.setText(loaisach.getTentl());
+                        if(edttl.getText().toString().equals("")){
                             Toast.makeText(mContext, "Vui lòng nhập tên loại sách", Toast.LENGTH_SHORT).show();
                         }else{
                             loaisach loaisach1 = new loaisach(list.get(holder.getAdapterPosition()).getMatl(), edttl.getText().toString());

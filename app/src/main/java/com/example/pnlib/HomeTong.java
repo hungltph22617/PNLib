@@ -29,7 +29,6 @@ public class HomeTong extends AppCompatActivity implements NavigationView.OnNavi
     Toolbar toolbar;
     DrawerLayout drawer;
     NavigationView nav;
-//    private static final int Home = 0;
     private static final int Theloai = 0;
     private static final int Sach = 1;
     private static final int Hoadon = 2;

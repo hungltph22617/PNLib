@@ -7,6 +7,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.pnlib.Database.DBHelper;
+import com.example.pnlib.model.acccount;
+import com.example.pnlib.model.loaisach;
+
+import java.util.ArrayList;
 
 public class ThuthuDao {
     public Boolean ListTT(Context context, String matt, String matkhau) {
@@ -27,6 +31,17 @@ public class ThuthuDao {
         }
         return false;
     }
+    public ArrayList<acccount> Listtt(Context context) {
+        ArrayList<acccount> list = new ArrayList<>();
+        DBHelper DBHelper = new DBHelper(context);
+        Cursor cursor = DBHelper.Getdata("SELECT * FROM THUTHU");
+        if (cursor.getCount() != 0) {
+            while (cursor.moveToNext()) {
+                list.add(new acccount(cursor.getString(0), cursor.getString(1), cursor.getString(2)));
+            }
+        }
+        return list;
+    }
 
 
     public String updateTT(Context context, String username, String oldPass, String newPass) {
@@ -46,7 +61,7 @@ public class ThuthuDao {
         return "Mật khẩu không đúng";
     }
 
-    public Boolean Createaccount(Context context, String tk, String pass, String hoten) {
+    public Boolean AddAccount(Context context, String tk, String hoten, String pass) {
         DBHelper DBHelper = new DBHelper(context);
         SQLiteDatabase db = DBHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -59,5 +74,33 @@ public class ThuthuDao {
         } else {
             return true;
         }
+    }
+    public int deletett(Context context, int id) {
+        DBHelper dbHelper = new DBHelper(context);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        long check = sqLiteDatabase.delete("THUTHU", "id=?", new String[]{id + ""});
+        if (check == -1) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+    public String Updatett(Context context, String matt, String hoten, String pass, acccount acccount) {
+        DBHelper DBHelper = new DBHelper(context);
+        SQLiteDatabase db = DBHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM THUTHU WHERE matt= ?", new String[]{matt});
+        if (cursor.getCount() > 0) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("matt", acccount.getMand());
+            contentValues.put("hoten", acccount.getTennd());
+            contentValues.put("matkhau", acccount.getMknd());
+            long check = db.update("THUTHU", contentValues, "matt = ?", new String[]{matt});
+            if (check == -1) {
+                return "Cập nhật thất bại";
+            } else {
+                return "Cập nhật thành công";
+            }
+        }
+        return "Thành công";
     }
 }
