@@ -25,6 +25,16 @@ public class phieumuon {
         this.tensach = tensach;
     }
 
+    public phieumuon(int mapm, int matv, String matt, int masach, String ngay, int trasach, int tienthue) {
+        this.mapm = mapm;
+        this.matv = matv;
+        this.matt = matt;
+        this.masach = masach;
+        this.ngay = ngay;
+        this.trasach = trasach;
+        this.tienthue = tienthue;
+    }
+
     public phieumuon(int matv, String matt, int masach, String ngay, int trasach, int tienthue) {
         this.matv = matv;
         this.matt = matt;

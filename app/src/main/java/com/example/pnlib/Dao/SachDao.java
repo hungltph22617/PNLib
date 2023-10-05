@@ -76,20 +76,20 @@ public class SachDao {
     public String updates(Context context, String masach, books sach) {
         DBHelper DBHelper = new DBHelper(context);
         SQLiteDatabase db = DBHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM SACH WHERE masach= ?", new String[]{masach});
+        Cursor cursor = db.rawQuery("SELECT * FROM SACH WHERE masach =?", new String[]{masach});
         if (cursor.getCount() > 0) {
             ContentValues contentValues = new ContentValues();
             contentValues.put("tensach", sach.getTens());
             contentValues.put("giathue", sach.getGts());
             contentValues.put("anh", sach.getAnh());
             contentValues.put("maloai", sach.getMls());
-            long check = db.update("SACH", contentValues, "masach = ?", new String[]{masach});
+            long check = db.update("SACH", contentValues, "masach =?", new String[]{masach});
             if (check == -1) {
                 return "Cập nhật thất Bại";
             } else {
-                return "Thành công";
+                return "Cập nhận thành công";
             }
         }
-        return "Thành công";
+        return "Cập nhận thành công";
     }
 }

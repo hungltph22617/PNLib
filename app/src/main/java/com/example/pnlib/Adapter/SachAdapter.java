@@ -32,7 +32,6 @@ import java.util.HashMap;
 public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
     public Context mContext;
     public ArrayList<books> list = new ArrayList<>();
-    SachDao dao;
 
     public SachAdapter(Context mContext, ArrayList<books> list) {
         this.mContext = mContext;
@@ -111,20 +110,20 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
                     @Override
                     public void onClick(View v) {
                         String tens = edtts.getText().toString();
-                        String anh = edtanh.getText().toString();
                         int gs = Integer.parseInt(edtgs.getText().toString());
+                        String anh = edtanh.getText().toString();
                         if (tens.equals("") || anh.equals("") || String.valueOf(gs).equals("")) {
                             Toast.makeText(mContext, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                         }else{
                             HashMap<String, Object> hsTV = (HashMap<String, Object>) spnnmls.getSelectedItem();
                             int maloai = Integer.parseInt(String.valueOf(hsTV.get("maloai")));
-                            //String maloai = String.valueOf(hsTV.get("maloai"));
                             books book = new books(list.get(holder.getAdapterPosition()).getMas(), edtts.getText().toString(), Integer.parseInt(edtgs.getText().toString()), edtanh.getText().toString(), maloai);
-                            SachDao dao1 = new SachDao();
-                            String check = dao1.updates(mContext, String.valueOf(list.get(holder.getAdapterPosition()).getMas()), book);
+                            SachDao dao = new SachDao();
+                            String check = dao.updates(mContext, String.valueOf(list.get(holder.getAdapterPosition()).getMas()), book);
                             Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();
                             list.clear();
                             list = dao.Listsach_tenloai(mContext);
+                            dialog.dismiss();
                             notifyDataSetChanged();
                         }
                     }

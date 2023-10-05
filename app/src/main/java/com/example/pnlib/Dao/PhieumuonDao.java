@@ -89,10 +89,10 @@ public class PhieumuonDao {
         }
     }
 
-    public String udatepm(Context context,String mapm,phieumuon phieuMuon) {
+    public String udatepm(Context context, String mapm, phieumuon phieuMuon) {
         DBHelper dbHelper = new DBHelper(context);
-        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PHIEUMUON WHERE mapm= ?", new String[]{mapm});
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM PHIEUMUON WHERE mapm= ?", new String[]{mapm});
         if (cursor.getCount() > 0) {
             ContentValues contentValues = new ContentValues();
             contentValues.put("matv", phieuMuon.getMatv());
@@ -101,13 +101,13 @@ public class PhieumuonDao {
             contentValues.put("ngay", phieuMuon.getNgay());
             contentValues.put("trasach", phieuMuon.getTrasach());
             contentValues.put("tienthue", phieuMuon.getTienthue());
-            long check = sqLiteDatabase.update("PHIEUMUON", contentValues, "mapm = ?", new String[]{mapm});
+            long check = db.update("PHIEUMUON", contentValues, "mapm = ?", new String[]{mapm});
             if (check == -1) {
-                return "Cập Nhật Thất Bại";
+                return "Cập thật thất Bại";
             } else {
-                return "thanh cong";
+                return "Cập thật thành công";
             }
         }
-        return "Thành công";
+        return "Cập thật thành công";
     }
 }

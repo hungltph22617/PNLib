@@ -70,7 +70,7 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
                 }
             }
         });
-        holder.editpm.setOnClickListener(new View.OnClickListener() {
+        holder.edipm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
@@ -103,12 +103,13 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
                         HashMap<String, Object> hsSach = (HashMap<String, Object>) spmssach.getSelectedItem();
                         int masach = (int) hsSach.get("masach");
                         int tien = (int) hsSach.get("giathue");
-                        phieumuon pm = new phieumuon(matv, list.get(holder.getAdapterPosition()).getMatt(), masach, list.get(holder.getAdapterPosition()).getNgay(), list.get(holder.getAdapterPosition()).getTrasach(), tien);
+                        phieumuon pm = new phieumuon(list.get(holder.getAdapterPosition()).getMapm(),matv, list.get(holder.getAdapterPosition()).getMatt(), masach, list.get(holder.getAdapterPosition()).getNgay(), list.get(holder.getAdapterPosition()).getTrasach(), tien);
                         PhieumuonDao dao = new PhieumuonDao();
                         String check = dao.udatepm(mContext, String.valueOf(list.get(holder.getAdapterPosition()).getMapm()), pm);
                         Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();
                         list.clear();
                         list = dao.Listpmm(mContext);
+                        dialog.dismiss();
                         notifyDataSetChanged();
                     }
                 });
@@ -194,12 +195,12 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView edtttvm, edttsm, edtgts, edtnms, edtttm, edtttt;
         Button btntrasach;
-        ImageView deletepm, editpm;
+        ImageView deletepm, edipm;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             deletepm = itemView.findViewById(R.id.deletepm);
-            editpm = itemView.findViewById(R.id.editpm);
+            edipm = itemView.findViewById(R.id.edipm);
             btntrasach = itemView.findViewById(R.id.btntrasach);
             edttsm = itemView.findViewById(R.id.edttsm);
             edtgts = itemView.findViewById(R.id.edtgts);

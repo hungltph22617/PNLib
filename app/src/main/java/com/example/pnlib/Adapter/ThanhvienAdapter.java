@@ -90,6 +90,8 @@ public class ThanhvienAdapter extends RecyclerView.Adapter<ThanhvienAdapter.View
                 TextInputEditText edtstentv = view.findViewById(R.id.edtstentv);
                 TextInputEditText edtsnstv = view.findViewById(R.id.edtsnstv);
                 Button btnsuatv = view.findViewById(R.id.btnsuatv);
+                edtstentv.setText(vien.getTentv());
+                edtsnstv.setText(String.valueOf(vien.getNamsinh()));
                 btnsuatv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
