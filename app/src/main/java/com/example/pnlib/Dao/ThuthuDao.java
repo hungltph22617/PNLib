@@ -85,7 +85,7 @@ public class ThuthuDao {
             return 1;
         }
     }
-    public String Updatett(Context context, String matt, String hoten, String pass, acccount acccount) {
+    public String Updatett(Context context, String matt, acccount acccount) {
         DBHelper DBHelper = new DBHelper(context);
         SQLiteDatabase db = DBHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM THUTHU WHERE matt= ?", new String[]{matt});

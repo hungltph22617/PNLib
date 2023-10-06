@@ -54,18 +54,6 @@ public class phieumuon {
         this.tentt = tentt;
     }
 
-    public phieumuon(int matv, String matt, int masach, String ngay, int trasach, int tienthue, String tentv, String tentt, String tensach) {
-        this.matv = matv;
-        this.matt = matt;
-        this.masach = masach;
-        this.ngay = ngay;
-        this.trasach = trasach;
-        this.tienthue = tienthue;
-        this.tentv = tentv;
-        this.tentt = tentt;
-        this.tensach = tensach;
-    }
-
     public int getMapm() {
         return mapm;
     }

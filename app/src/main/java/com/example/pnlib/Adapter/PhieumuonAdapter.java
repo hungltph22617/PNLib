@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -49,11 +51,20 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         phieumuon pm = list.get(position);
+        String trangthai = null;
+        if(list.get(position).getTrasach() == 0){
+            trangthai = "Chưa trả sách";
+            holder.btntrasach.setVisibility(View.VISIBLE);
+        }else{
+            trangthai = "Đã trả sách";
+            holder.btntrasach.setVisibility(View.GONE);
+            holder.itemdoimauback.setBackgroundColor(Color.GRAY);
+        }
         holder.edtttvm.setText(pm.getTentv());
         holder.edttsm.setText(pm.getTensach());
         holder.edtgts.setText(String.valueOf(pm.getTienthue()));
         holder.edtnms.setText(pm.getNgay());
-        holder.edtttm.setText(String.valueOf(pm.getTrasach()));
+        holder.edtttm.setText("" + trangthai);
         holder.edtttt.setText(pm.getTentt());
         holder.btntrasach.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,9 +114,9 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
                         HashMap<String, Object> hsSach = (HashMap<String, Object>) spmssach.getSelectedItem();
                         int masach = (int) hsSach.get("masach");
                         int tien = (int) hsSach.get("giathue");
-                        phieumuon pm = new phieumuon(list.get(holder.getAdapterPosition()).getMapm(),matv, list.get(holder.getAdapterPosition()).getMatt(), masach, list.get(holder.getAdapterPosition()).getNgay(), list.get(holder.getAdapterPosition()).getTrasach(), tien);
+                        phieumuon phieum = new phieumuon(list.get(holder.getAdapterPosition()).getMapm(),matv, list.get(holder.getAdapterPosition()).getMatt(), masach, list.get(holder.getAdapterPosition()).getNgay(), list.get(holder.getAdapterPosition()).getTrasach(), tien);
                         PhieumuonDao dao = new PhieumuonDao();
-                        String check = dao.udatepm(mContext, String.valueOf(list.get(holder.getAdapterPosition()).getMapm()), pm);
+                        String check = dao.udatepm(mContext, String.valueOf(list.get(holder.getAdapterPosition()).getMapm()), phieum);
                         Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();
                         list.clear();
                         list = dao.Listpmm(mContext);
@@ -196,6 +207,7 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
         TextView edtttvm, edttsm, edtgts, edtnms, edtttm, edtttt;
         Button btntrasach;
         ImageView deletepm, edipm;
+        LinearLayout itemdoimauback;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -208,6 +220,7 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
             edtttm = itemView.findViewById(R.id.edtttm);
             edtttt = itemView.findViewById(R.id.edtttt);
             edtttvm = itemView.findViewById(R.id.edtttvm);
+            itemdoimauback = itemView.findViewById(R.id.itemdoimauback);
         }
     }
 }

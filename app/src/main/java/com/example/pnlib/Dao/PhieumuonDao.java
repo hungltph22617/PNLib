@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.pnlib.Database.DBHelper;
+import com.example.pnlib.model.books;
 import com.example.pnlib.model.phieumuon;
 
 import java.util.ArrayList;
@@ -89,25 +90,25 @@ public class PhieumuonDao {
         }
     }
 
-    public String udatepm(Context context, String mapm, phieumuon phieuMuon) {
-        DBHelper dbHelper = new DBHelper(context);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM PHIEUMUON WHERE mapm= ?", new String[]{mapm});
+    public String udatepm(Context context, String mapm, phieumuon phieumuon) {
+        DBHelper DBHelper = new DBHelper(context);
+        SQLiteDatabase db = DBHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM PHIEUMUON WHERE mapm =?", new String[]{mapm});
         if (cursor.getCount() > 0) {
             ContentValues contentValues = new ContentValues();
-            contentValues.put("matv", phieuMuon.getMatv());
-            contentValues.put("matt", phieuMuon.getMatt());
-            contentValues.put("masach", phieuMuon.getMasach());
-            contentValues.put("ngay", phieuMuon.getNgay());
-            contentValues.put("trasach", phieuMuon.getTrasach());
-            contentValues.put("tienthue", phieuMuon.getTienthue());
-            long check = db.update("PHIEUMUON", contentValues, "mapm = ?", new String[]{mapm});
+            contentValues.put("matv", phieumuon.getMatv());
+            contentValues.put("matt", phieumuon.getMatt());
+            contentValues.put("masach", phieumuon.getMasach());
+            contentValues.put("ngay", phieumuon.getNgay());
+            contentValues.put("trasach", phieumuon.getTrasach());
+            contentValues.put("tienthue", phieumuon.getTienthue());
+            long check = db.update("PHIEUMUON", contentValues, "mapm =?", new String[]{mapm});
             if (check == -1) {
-                return "Cập thật thất Bại";
+                return "Cập nhật thất Bại";
             } else {
-                return "Cập thật thành công";
+                return "Cập nhận thành công";
             }
         }
-        return "Cập thật thành công";
+        return "Cập nhận thành công";
     }
 }
