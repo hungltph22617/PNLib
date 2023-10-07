@@ -68,16 +68,17 @@ public class SachFragment extends Fragment {
                         int gs = Integer.parseInt(edgs.getText().toString());
                         if (tens.equals("") || anh.equals("") || String.valueOf(gs).equals("")) {
                             Toast.makeText(getActivity(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-                        }
-                        HashMap<String, Object> hsTV = (HashMap<String, Object>) spnmls.getSelectedItem();
-                        String maloai = String.valueOf(hsTV.get("maloai"));
-                        boolean check = dao.adds(getActivity(), edts.getText().toString(), Integer.parseInt(edgs.getText().toString()), edanh.getText().toString(), Integer.parseInt(maloai));
-                        if (check) {
-                            Toast.makeText(getActivity(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
-                            loadrecy();
-                            dialog.dismiss();
-                        } else {
-                            Toast.makeText(getActivity(), "Thêm Thất Bại", Toast.LENGTH_SHORT).show();
+                        }else{
+                            HashMap<String, Object> hsTV = (HashMap<String, Object>) spnmls.getSelectedItem();
+                            String maloai = String.valueOf(hsTV.get("maloai"));
+                            boolean check = dao.adds(getActivity(), edts.getText().toString(), Integer.parseInt(edgs.getText().toString()), edanh.getText().toString(), Integer.parseInt(maloai));
+                            if (check) {
+                                Toast.makeText(getActivity(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
+                                loadrecy();
+                                dialog.dismiss();
+                            } else {
+                                Toast.makeText(getActivity(), "Thêm Thất Bại", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });

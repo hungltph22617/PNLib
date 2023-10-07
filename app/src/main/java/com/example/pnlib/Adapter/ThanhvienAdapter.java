@@ -100,14 +100,15 @@ public class ThanhvienAdapter extends RecyclerView.Adapter<ThanhvienAdapter.View
                         int nstv = Integer.parseInt(edtsnstv.getText().toString());
                         if(edtstentv.getText().toString().equalsIgnoreCase("") || edtsnstv.getText().toString().equalsIgnoreCase("")){
                             Toast.makeText(mContext, "Không được để trống", Toast.LENGTH_SHORT).show();
+                        }else{
+                            TVien thanhVien = new TVien(list.get(holder.getAdapterPosition()).getMatv(), tentv, nstv);
+                            String check = dao.updateTV(mContext, list.get(holder.getAdapterPosition()).getMatv(), thanhVien);
+                            Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();
+                            list.clear();
+                            dialog.dismiss();
+                            list = dao.ListTV(mContext);
+                            notifyDataSetChanged();
                         }
-                        TVien thanhVien = new TVien(list.get(holder.getAdapterPosition()).getMatv(), tentv, nstv);
-                        String check = dao.updateTV(mContext, list.get(holder.getAdapterPosition()).getMatv(), thanhVien);
-                        Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();
-                        list.clear();
-                        dialog.dismiss();
-                        list = dao.ListTV(mContext);
-                        notifyDataSetChanged();
                     }
                 });
             }
