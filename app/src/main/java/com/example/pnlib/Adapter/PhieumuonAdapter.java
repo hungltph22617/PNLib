@@ -91,7 +91,9 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
                 Dialog dialog  = builder.create();
                 dialog.show();
                 Spinner spnstv = v.findViewById(R.id.spnstv);
+                getDataThanhVien(spnstv);
                 Spinner spmssach = v.findViewById(R.id.spmssach);
+                getDataSach(spmssach);
                 TextView edtsgt = v.findViewById(R.id.edtsgt);
                 Button btnspm = v.findViewById(R.id.btnspm);
                 spmssach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -124,8 +126,6 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
                         notifyDataSetChanged();
                     }
                 });
-                getDataSach(spmssach);
-                getDataThanhVien(spnstv);
             }
         });
         holder.deletepm.setOnClickListener(new View.OnClickListener() {
