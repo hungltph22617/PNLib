@@ -27,7 +27,7 @@ public class ThanhvienDao {
         }
         return list;
     }
-    public boolean addTV(Context context,String hoten,String namsinh){
+    public boolean addTV(Context context,String hoten,int namsinh){
         DBHelper dbHelper=new DBHelper(context);
         SQLiteDatabase sqLiteDatabase=dbHelper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();

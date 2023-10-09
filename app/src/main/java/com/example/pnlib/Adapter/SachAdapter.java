@@ -110,9 +110,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
                     @Override
                     public void onClick(View v) {
                         String tens = edtts.getText().toString();
-                        int gs = Integer.parseInt(edtgs.getText().toString());
+                        String gs = edtgs.getText().toString();
                         String anh = edtanh.getText().toString();
-                        if (tens.equals("") || anh.equals("") || String.valueOf(gs).equals("")) {
+                        if (tens.equals("") || anh.equals("") || gs.equals("")) {
                             Toast.makeText(mContext, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                         }else{
                             HashMap<String, Object> hsTV = (HashMap<String, Object>) spnnmls.getSelectedItem();

@@ -65,10 +65,10 @@ public class SachFragment extends Fragment {
                     public void onClick(View v) {
                         String tens = edts.getText().toString();
                         String anh = edanh.getText().toString();
-                        int gs = Integer.parseInt(edgs.getText().toString());
-                        if (tens.equals("") || anh.equals("") || String.valueOf(gs).equals("")) {
+                        String gts = edgs.getText().toString();
+                        if (tens.equals("") || anh.equals("") || gts.equals("")) {
                             Toast.makeText(getActivity(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else{
                             HashMap<String, Object> hsTV = (HashMap<String, Object>) spnmls.getSelectedItem();
                             String maloai = String.valueOf(hsTV.get("maloai"));
                             boolean check = dao.adds(getActivity(), edts.getText().toString(), Integer.parseInt(edgs.getText().toString()), edanh.getText().toString(), Integer.parseInt(maloai));

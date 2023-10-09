@@ -63,11 +63,11 @@ public class ThanhvienFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String tentv = edtttentv.getText().toString();
-                int nstv = Integer.parseInt(edttnstv.getText().toString());
-                if(edtttentv.getText().toString().equalsIgnoreCase("")||edttnstv.getText().toString().equalsIgnoreCase("")){
+                String nstv = edttnstv.getText().toString();
+                if(tentv.equals("") || nstv.equals("")){
                     Toast.makeText(getActivity(), "Không được để trống", Toast.LENGTH_SHORT).show();
                 }else{
-                    boolean check = dao.addTV(getActivity(), tentv, String.valueOf(nstv));
+                    boolean check = dao.addTV(getActivity(), tentv, Integer.parseInt(nstv));
                     if (check) {
                         Toast.makeText(getActivity(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
                         loadrecytv();

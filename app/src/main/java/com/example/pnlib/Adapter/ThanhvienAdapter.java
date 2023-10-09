@@ -97,11 +97,11 @@ public class ThanhvienAdapter extends RecyclerView.Adapter<ThanhvienAdapter.View
                     public void onClick(View v) {
                         ThanhvienDao dao = new ThanhvienDao();
                         String tentv = edtstentv.getText().toString();
-                        int nstv = Integer.parseInt(edtsnstv.getText().toString());
-                        if(edtstentv.getText().toString().equalsIgnoreCase("") || edtsnstv.getText().toString().equalsIgnoreCase("")){
+                        String nstv = edtsnstv.getText().toString();
+                        if(tentv.equals("") || nstv.equals("")){
                             Toast.makeText(mContext, "Không được để trống", Toast.LENGTH_SHORT).show();
                         }else{
-                            TVien thanhVien = new TVien(list.get(holder.getAdapterPosition()).getMatv(), tentv, nstv);
+                            TVien thanhVien = new TVien(list.get(holder.getAdapterPosition()).getMatv(), tentv, Integer.parseInt(nstv));
                             String check = dao.updateTV(mContext, list.get(holder.getAdapterPosition()).getMatv(), thanhVien);
                             Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();
                             list.clear();
