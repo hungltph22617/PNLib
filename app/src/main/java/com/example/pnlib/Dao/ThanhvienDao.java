@@ -6,20 +6,20 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.pnlib.Database.DBHelper;
-import com.example.pnlib.model.TVien;
+import com.example.pnlib.model.thanhvien;
 
 import java.util.ArrayList;
 
 public class ThanhvienDao {
     DBHelper DBHelper;
 
-    public ArrayList<TVien> ListTV(Context context){
-        ArrayList<TVien> list=new ArrayList<>();
+    public ArrayList<thanhvien> ListTV(Context context){
+        ArrayList<thanhvien> list=new ArrayList<>();
         DBHelper DBHelper = new DBHelper(context);
         Cursor cursor= DBHelper.Getdata("SELECT * FROM THANHVIEN");
         if(cursor.getCount()!=0){
             while (cursor.moveToNext()){
-                list.add(new TVien(
+                list.add(new thanhvien(
                         cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getInt(2)));
@@ -56,7 +56,7 @@ public class ThanhvienDao {
         }
     }
 
-    public String updateTV(Context context, int id, TVien thanhVien) {
+    public String updateTV(Context context, int id, thanhvien thanhVien) {
         DBHelper dbHelper = new DBHelper(context);
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM THANHVIEN WHERE matv= ?", new String[]{String.valueOf(id)});

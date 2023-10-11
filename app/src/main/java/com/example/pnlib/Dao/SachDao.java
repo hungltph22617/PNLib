@@ -6,18 +6,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.pnlib.Database.DBHelper;
-import com.example.pnlib.model.books;
+import com.example.pnlib.model.sach;
 
 import java.util.ArrayList;
 
 public class SachDao {
-    public ArrayList<books> Listsach(Context context) {
-        ArrayList<books> list = new ArrayList<>();
+    public ArrayList<sach> Listsach(Context context) {
+        ArrayList<sach> list = new ArrayList<>();
         DBHelper DBHelper = new DBHelper(context);
         Cursor cursor = DBHelper.Getdata("SELECT * FROM SACH");
         if (cursor.getCount() != 0) {
             while (cursor.moveToNext()) {
-                list.add(new books(
+                list.add(new sach(
                         cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getInt(2),
@@ -27,13 +27,13 @@ public class SachDao {
         }
         return list;
     }
-    public ArrayList<books> Listsach_tenloai(Context context) {
-        ArrayList<books> list = new ArrayList<>();
+    public ArrayList<sach> Listsach_tenloai(Context context) {
+        ArrayList<sach> list = new ArrayList<>();
         DBHelper DBHelper = new DBHelper(context);
         Cursor cursor = DBHelper.Getdata("SELECT sc.masach,sc.tensach,sc.giathue, sc.anh,ls.maloai,ls.tenloai FROM SACH sc,LOAISACH ls WHERE sc.maloai=ls.maloai;");
         if (cursor.getCount() != 0) {
             while (cursor.moveToNext()) {
-                list.add(new books(
+                list.add(new sach(
                         cursor.getInt(0),
                         cursor.getString(1),
                         cursor.getInt(2),
@@ -73,7 +73,7 @@ public class SachDao {
             return 1;
         }
     }
-    public String updates(Context context, String masach, books sach) {
+    public String updates(Context context, String masach, sach sach) {
         DBHelper DBHelper = new DBHelper(context);
         SQLiteDatabase db = DBHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM SACH WHERE masach =?", new String[]{masach});

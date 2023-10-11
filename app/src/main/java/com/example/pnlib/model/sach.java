@@ -1,6 +1,6 @@
 package com.example.pnlib.model;
 
-public class books {
+public class sach {
     private int mas;
     private String tens;
     private int gts;
@@ -9,7 +9,7 @@ public class books {
     private String tls;
     private int soluongdamuon;
 
-    public books(int mas, String tens, int gts, String anh, int mls, String tls) {
+    public sach(int mas, String tens, int gts, String anh, int mls, String tls) {
         this.mas = mas;
         this.tens = tens;
         this.gts = gts;
@@ -18,7 +18,7 @@ public class books {
         this.tls = tls;
     }
 
-    public books(int mas, String tens, int gts, String anh, int mls) {
+    public sach(int mas, String tens, int gts, String anh, int mls) {
         this.mas = mas;
         this.tens = tens;
         this.gts = gts;
@@ -26,7 +26,7 @@ public class books {
         this.mls = mls;
     }
 
-    public books(int mas, String anh, String tens, int soluongdamuon) {
+    public sach(int mas, String anh, String tens, int soluongdamuon) {
         this.mas = mas;
         this.anh = anh;
         this.tens = tens;
@@ -41,7 +41,7 @@ public class books {
         this.soluongdamuon = soluongdamuon;
     }
 
-    public books() {
+    public sach() {
     }
 
     public int getMas() {

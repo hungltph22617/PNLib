@@ -5,18 +5,18 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.pnlib.Database.DBHelper;
-import com.example.pnlib.model.books;
+import com.example.pnlib.model.sach;
 
 import java.util.ArrayList;
 
 public class DoanhthuDao {
-    public ArrayList<books> getTop10(Context context){
-        ArrayList<books> list=new ArrayList<>();
+    public ArrayList<sach> getTop10(Context context){
+        ArrayList<sach> list=new ArrayList<>();
         DBHelper DBHelper =new DBHelper(context);
         Cursor cursor= DBHelper.Getdata("SELECT pm.MASACH, sc.ANH,sc.TENSACH,COUNT(pm.MASACH) FROM PHIEUMUON pm,SACH sc WHERE pm.MASACH = sc.MASACH GROUP BY pm.masach,sc.TENSACH ORDER BY COUNT(pm.MASACH) DESC LIMIT 10");
         if(cursor.getCount()!=0){
             while (cursor.moveToNext()){
-                list.add(new books(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getInt(3)));
+                list.add(new sach(cursor.getInt(0), cursor.getString(1), cursor.getString(2),cursor.getInt(3)));
             }
         }
         return list;

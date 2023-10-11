@@ -24,8 +24,8 @@ import com.example.pnlib.Dao.PhieumuonDao;
 import com.example.pnlib.Dao.SachDao;
 import com.example.pnlib.Dao.ThanhvienDao;
 import com.example.pnlib.R;
-import com.example.pnlib.model.TVien;
-import com.example.pnlib.model.books;
+import com.example.pnlib.model.thanhvien;
+import com.example.pnlib.model.sach;
 import com.example.pnlib.model.phieumuon;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -126,9 +126,9 @@ public class PhieumuonFragment extends Fragment {
     }
     private void getDataThanhVien(Spinner spnThanhVien) {
         ThanhvienDao thanhVienDao = new ThanhvienDao();
-        ArrayList<TVien> list = thanhVienDao.ListTV(getContext());
+        ArrayList<thanhvien> list = thanhVienDao.ListTV(getContext());
         ArrayList<HashMap<String, Object>> listHM = new ArrayList<>();
-        for (TVien thanhVien : list) {
+        for (thanhvien thanhVien : list) {
             HashMap<String, Object> hs = new HashMap<>();
             hs.put("matv", thanhVien.getMatv());
             hs.put("hoten", thanhVien.getTentv());
@@ -144,9 +144,9 @@ public class PhieumuonFragment extends Fragment {
 
     private void getDataSach(Spinner spnSach) {
         SachDao dao = new SachDao();
-        ArrayList<books> list = dao.Listsach(getContext());
+        ArrayList<sach> list = dao.Listsach(getContext());
         ArrayList<HashMap<String, Object>> listHM = new ArrayList<>();
-        for (books book : list) {
+        for (sach book : list) {
             HashMap<String, Object> hs = new HashMap<>();
             hs.put("masach", book.getMas());
             hs.put("tensach", book.getTens());

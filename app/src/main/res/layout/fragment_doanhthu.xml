@@ -9,6 +9,15 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="#556b2f"
+            android:textColor="@color/white"
+            android:text="Doanh thu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:padding="10dp"
             android:layout_width="match_parent"

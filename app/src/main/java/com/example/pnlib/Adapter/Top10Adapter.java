@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.pnlib.R;
-import com.example.pnlib.model.books;
+import com.example.pnlib.model.sach;
 
 import java.util.ArrayList;
 
 public class Top10Adapter extends RecyclerView.Adapter<Top10Adapter.Viewholder>{
     Context mContext;
-    ArrayList<books> list = new ArrayList<>();
+    ArrayList<sach> list = new ArrayList<>();
 
-    public Top10Adapter(Context mContext, ArrayList<books> list) {
+    public Top10Adapter(Context mContext, ArrayList<sach> list) {
         this.mContext = mContext;
         this.list = list;
     }
@@ -34,7 +34,7 @@ public class Top10Adapter extends RecyclerView.Adapter<Top10Adapter.Viewholder>{
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        books sach = list.get(position);
+        sach sach = list.get(position);
         Glide.with(mContext).load(sach.getAnh()).into(holder.imgtop10);
         holder.txttensachtop10.setText(sach.getTens());
         holder.txtsoluongtop10.setText(String.valueOf(sach.getSoluongdamuon()));

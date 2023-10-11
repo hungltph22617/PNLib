@@ -18,16 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pnlib.Dao.ThanhvienDao;
 import com.example.pnlib.R;
-import com.example.pnlib.model.TVien;
+import com.example.pnlib.model.thanhvien;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
 public class ThanhvienAdapter extends RecyclerView.Adapter<ThanhvienAdapter.ViewHolder>{
     Context mContext;
-    ArrayList<TVien> list = new ArrayList<>();
+    ArrayList<thanhvien> list = new ArrayList<>();
 
-    public ThanhvienAdapter(Context mContext, ArrayList<TVien> list) {
+    public ThanhvienAdapter(Context mContext, ArrayList<thanhvien> list) {
         this.mContext = mContext;
         this.list = list;
     }
@@ -41,7 +41,7 @@ public class ThanhvienAdapter extends RecyclerView.Adapter<ThanhvienAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TVien vien = list.get(position);
+        thanhvien vien = list.get(position);
         holder.txtttv.setText(vien.getTentv());
         holder.txtnstv.setText(String.valueOf(vien.getNamsinh()));
         holder.deletetv.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +101,7 @@ public class ThanhvienAdapter extends RecyclerView.Adapter<ThanhvienAdapter.View
                         if(tentv.equals("") || nstv.equals("")){
                             Toast.makeText(mContext, "Không được để trống", Toast.LENGTH_SHORT).show();
                         }else{
-                            TVien thanhVien = new TVien(list.get(holder.getAdapterPosition()).getMatv(), tentv, Integer.parseInt(nstv));
+                            thanhvien thanhVien = new thanhvien(list.get(holder.getAdapterPosition()).getMatv(), tentv, Integer.parseInt(nstv));
                             String check = dao.updateTV(mContext, list.get(holder.getAdapterPosition()).getMatv(), thanhVien);
                             Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();
                             list.clear();

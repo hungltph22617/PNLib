@@ -22,7 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.pnlib.Dao.LoaisachDao;
 import com.example.pnlib.Dao.SachDao;
 import com.example.pnlib.R;
-import com.example.pnlib.model.books;
+import com.example.pnlib.model.sach;
 import com.example.pnlib.model.loaisach;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -31,9 +31,9 @@ import java.util.HashMap;
 
 public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
     public Context mContext;
-    public ArrayList<books> list = new ArrayList<>();
+    public ArrayList<sach> list = new ArrayList<>();
 
-    public SachAdapter(Context mContext, ArrayList<books> list) {
+    public SachAdapter(Context mContext, ArrayList<sach> list) {
         this.mContext = mContext;
         this.list = list;
     }
@@ -47,7 +47,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        books book = list.get(position);
+        sach book = list.get(position);
         Glide.with(mContext).load(book.getAnh()).into(holder.imgls);
         holder.txtts.setText(book.getTens());
         holder.txtgts.setText(String.valueOf(book.getGts()));
@@ -117,7 +117,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
                         }else{
                             HashMap<String, Object> hsTV = (HashMap<String, Object>) spnnmls.getSelectedItem();
                             int maloai = Integer.parseInt(String.valueOf(hsTV.get("maloai")));
-                            books book = new books(list.get(holder.getAdapterPosition()).getMas(), edtts.getText().toString(), Integer.parseInt(edtgs.getText().toString()), edtanh.getText().toString(), maloai);
+                            sach book = new sach(list.get(holder.getAdapterPosition()).getMas(), edtts.getText().toString(), Integer.parseInt(edtgs.getText().toString()), edtanh.getText().toString(), maloai);
                             SachDao dao = new SachDao();
                             String check = dao.updates(mContext, String.valueOf(list.get(holder.getAdapterPosition()).getMas()), book);
                             Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();

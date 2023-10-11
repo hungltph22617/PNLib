@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pnlib.Adapter.ThanhvienAdapter;
 import com.example.pnlib.Dao.ThanhvienDao;
 import com.example.pnlib.R;
-import com.example.pnlib.model.TVien;
+import com.example.pnlib.model.thanhvien;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -26,7 +26,7 @@ public class ThanhvienFragment extends Fragment {
     RecyclerView recytv;
     FloatingActionButton fltv;
     ThanhvienDao dao;
-    ArrayList<TVien> list = new ArrayList<>();
+    ArrayList<thanhvien> list = new ArrayList<>();
     ThanhvienAdapter adapter;
 
     public ThanhvienFragment() {

@@ -19,7 +19,7 @@ import com.example.pnlib.Adapter.SachAdapter;
 import com.example.pnlib.Dao.LoaisachDao;
 import com.example.pnlib.Dao.SachDao;
 import com.example.pnlib.R;
-import com.example.pnlib.model.books;
+import com.example.pnlib.model.sach;
 import com.example.pnlib.model.loaisach;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -30,7 +30,7 @@ import java.util.HashMap;
 public class SachFragment extends Fragment {
     RecyclerView recys;
     FloatingActionButton fls;
-    ArrayList<books> list = new ArrayList<>();
+    ArrayList<sach> list = new ArrayList<>();
     SachDao dao;
     SachAdapter adapter;
 

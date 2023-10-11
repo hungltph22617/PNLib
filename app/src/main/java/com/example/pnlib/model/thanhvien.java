@@ -1,19 +1,19 @@
 package com.example.pnlib.model;
 
-public class TVien {
+public class thanhvien {
     private int matv;
     private String tentv;
     private int namsinh;
 
-    public TVien() {
+    public thanhvien() {
     }
 
-    public TVien(String tentv, int namsinh) {
+    public thanhvien(String tentv, int namsinh) {
         this.tentv = tentv;
         this.namsinh = namsinh;
     }
 
-    public TVien(int matv, String tentv, int namsinh) {
+    public thanhvien(int matv, String tentv, int namsinh) {
         this.matv = matv;
         this.tentv = tentv;
         this.namsinh = namsinh;

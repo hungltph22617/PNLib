@@ -25,8 +25,8 @@ import com.example.pnlib.Dao.PhieumuonDao;
 import com.example.pnlib.Dao.SachDao;
 import com.example.pnlib.Dao.ThanhvienDao;
 import com.example.pnlib.R;
-import com.example.pnlib.model.TVien;
-import com.example.pnlib.model.books;
+import com.example.pnlib.model.thanhvien;
+import com.example.pnlib.model.sach;
 import com.example.pnlib.model.phieumuon;
 
 import java.util.ArrayList;
@@ -163,9 +163,9 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
     }
     private void getDataThanhVien(Spinner spnThanhVien) {
         ThanhvienDao thanhVienDao = new ThanhvienDao();
-        ArrayList<TVien> list = thanhVienDao.ListTV(mContext);
+        ArrayList<thanhvien> list = thanhVienDao.ListTV(mContext);
         ArrayList<HashMap<String, Object>> listHM = new ArrayList<>();
-        for (TVien thanhVien : list) {
+        for (thanhvien thanhVien : list) {
             HashMap<String, Object> hs = new HashMap<>();
             hs.put("matv", thanhVien.getMatv());
             hs.put("hoten", thanhVien.getTentv());
@@ -181,9 +181,9 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
 
     private void getDataSach(Spinner spnSach) {
         SachDao dao = new SachDao();
-        ArrayList<books> list = dao.Listsach(mContext);
+        ArrayList<sach> list = dao.Listsach(mContext);
         ArrayList<HashMap<String, Object>> listHM = new ArrayList<>();
-        for (books book : list) {
+        for (sach book : list) {
             HashMap<String, Object> hs = new HashMap<>();
             hs.put("masach", book.getMas());
             hs.put("tensach", book.getTens());

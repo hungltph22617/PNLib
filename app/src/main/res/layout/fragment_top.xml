@@ -4,10 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.Top10Fragment">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recytop10"
-        android:padding="10dp"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="#556b2f"
+            android:textColor="@color/white"
+            android:text="Top 10 sách mượn nhiều nhất"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recytop10"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
 </FrameLayout>

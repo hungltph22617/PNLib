@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pnlib.Adapter.Top10Adapter;
 import com.example.pnlib.Dao.DoanhthuDao;
 import com.example.pnlib.R;
-import com.example.pnlib.model.books;
+import com.example.pnlib.model.sach;
 
 import java.util.ArrayList;
 
 public class Top10Fragment extends Fragment {
     RecyclerView recytop10;
     Top10Adapter adapter;
-    ArrayList<books> list = new ArrayList<>();
+    ArrayList<sach> list = new ArrayList<>();
     DoanhthuDao dao;
 
     public Top10Fragment() {

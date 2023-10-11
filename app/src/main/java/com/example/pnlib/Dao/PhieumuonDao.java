@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.pnlib.Database.DBHelper;
-import com.example.pnlib.model.books;
 import com.example.pnlib.model.phieumuon;
 
 import java.util.ArrayList;
