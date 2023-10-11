@@ -13,18 +13,18 @@ import java.util.ArrayList;
 public class PhieumuonDao {
     DBHelper DBHelper;
 
-    public ArrayList<phieumuon> Listpm(Context context) {
-        ArrayList<phieumuon> list = new ArrayList<>();
-        DBHelper DBHelper = new DBHelper(context);
-        Cursor cursor = DBHelper.Getdata("SELECT pm.mapm, pm.matv, tv.hoten, pm.matt, tt.hoten, pm.masach, sc.tensach, pm.ngay, pm.trasach, pm.tienthue\n" +
-                "FROM PHIEUMUON pm, THANHVIEN tv, THUTHU tt, SACH sc \n" +
-                "WHERE pm.matv = tv.matv and pm.matt = tt.matt AND pm.masach = sc.masach ORDER BY pm.mapm DESC");
-        if (cursor.getCount() != 0) {
-            while (cursor.moveToNext()) {
-                list.add(new phieumuon(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getInt(3), cursor.getString(4), cursor.getInt(5), cursor.getInt(6), cursor.getString(7), cursor.getString(8), cursor.getString(9)));}
-        }
-        return list;
-    }
+//    public ArrayList<phieumuon> Listpm(Context context) {
+//        ArrayList<phieumuon> list = new ArrayList<>();
+//        DBHelper DBHelper = new DBHelper(context);
+//        Cursor cursor = DBHelper.Getdata("SELECT pm.mapm, pm.matv, tv.hoten, pm.matt, tt.hoten, pm.masach, sc.tensach, pm.ngay, pm.trasach, pm.tienthue\n" +
+//                "FROM PHIEUMUON pm, THANHVIEN tv, THUTHU tt, SACH sc \n" +
+//                "WHERE pm.matv = tv.matv and pm.matt = tt.matt AND pm.masach = sc.masach ORDER BY pm.mapm DESC");
+//        if (cursor.getCount() != 0) {
+//            while (cursor.moveToNext()) {
+//                list.add(new phieumuon(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), cursor.getInt(3), cursor.getString(4), cursor.getInt(5), cursor.getInt(6), cursor.getString(7), cursor.getString(8), cursor.getString(9)));}
+//        }
+//        return list;
+//    }
     public ArrayList<phieumuon> Listpmm(Context context) {
         ArrayList<phieumuon> list = new ArrayList<>();
         DBHelper DBHelper = new DBHelper(context);
@@ -89,10 +89,10 @@ public class PhieumuonDao {
         }
     }
 
-    public String udatepm(Context context, String mapm, phieumuon phieumuon) {
+    public String udatepm(Context context, int mapm, phieumuon phieumuon) {
         DBHelper DBHelper = new DBHelper(context);
         SQLiteDatabase db = DBHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM PHIEUMUON WHERE mapm =?", new String[]{mapm});
+        Cursor cursor = db.rawQuery("SELECT * FROM PHIEUMUON WHERE mapm =?", new String[]{String.valueOf(mapm)});
         if (cursor.getCount() > 0) {
             ContentValues contentValues = new ContentValues();
             contentValues.put("matv", phieumuon.getMatv());
@@ -101,7 +101,7 @@ public class PhieumuonDao {
             contentValues.put("ngay", phieumuon.getNgay());
             contentValues.put("trasach", phieumuon.getTrasach());
             contentValues.put("tienthue", phieumuon.getTienthue());
-            long check = db.update("PHIEUMUON", contentValues, "mapm =?", new String[]{mapm});
+            long check = db.update("PHIEUMUON", contentValues, "mapm =?", new String[]{String.valueOf(mapm)});
             if (check == -1) {
                 return "Cập nhật thất Bại";
             } else {

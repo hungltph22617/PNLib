@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +30,12 @@ import com.example.pnlib.model.thanhvien;
 import com.example.pnlib.model.sach;
 import com.example.pnlib.model.phieumuon;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.ViewHolder>{
     Context mContext;
@@ -116,14 +121,8 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
                         HashMap<String, Object> hsSach = (HashMap<String, Object>) spmssach.getSelectedItem();
                         int masach = (int) hsSach.get("masach");
                         int tien = (int) hsSach.get("giathue");
-                        phieumuon phieum = new phieumuon(list.get(holder.getAdapterPosition()).getMapm(),matv, list.get(holder.getAdapterPosition()).getMatt(), masach, list.get(holder.getAdapterPosition()).getNgay(), list.get(holder.getAdapterPosition()).getTrasach(), tien);
-                        PhieumuonDao dao = new PhieumuonDao();
-                        String check = dao.udatepm(mContext, String.valueOf(list.get(holder.getAdapterPosition()).getMapm()), phieum);
-                        Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();
-                        list.clear();
-                        list = dao.Listpmm(mContext);
-                        dialog.dismiss();
-                        notifyDataSetChanged();
+                        int id = pm.getMapm();
+                        suapm(id, matv, masach,tien, dialog);
                     }
                 });
             }
@@ -160,6 +159,21 @@ public class PhieumuonAdapter extends RecyclerView.Adapter<PhieumuonAdapter.View
                 builder.show();
             }
         });
+    }
+    private void suapm(int id, int matv, int masach, int tien ,Dialog dialog) {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences("THONGTINLOGIN", Context.MODE_PRIVATE);
+        String matt = sharedPreferences.getString("matt", "");
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String ngay = simpleDateFormat.format(date);
+        phieumuon pm = new phieumuon(id, matv, matt, masach, ngay, 0,tien);
+        PhieumuonDao dao = new PhieumuonDao();
+        String kiemtra = dao.udatepm(mContext, id, pm);
+        Toast.makeText(mContext, kiemtra, Toast.LENGTH_SHORT).show();
+        list.clear();
+        list = dao.Listpmm(mContext);
+        dialog.dismiss();
+        notifyDataSetChanged();
     }
     private void getDataThanhVien(Spinner spnThanhVien) {
         ThanhvienDao thanhVienDao = new ThanhvienDao();
