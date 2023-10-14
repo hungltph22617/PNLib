@@ -3,10 +3,14 @@ package com.example.pnlib.Fragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -33,6 +37,8 @@ public class SachFragment extends Fragment {
     ArrayList<sach> list = new ArrayList<>();
     SachDao dao;
     SachAdapter adapter;
+    EditText edttk;
+    ImageView imgtd, imggd;
 
     public SachFragment() {
         // Required empty public constructor
@@ -45,6 +51,26 @@ public class SachFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_book, container, false);
         recys = view.findViewById(R.id.recybook);
         fls = view.findViewById(R.id.flbook);
+        edttk = view.findViewById(R.id.edttk);
+        imgtd = view.findViewById(R.id.imgtd);
+        imggd = view.findViewById(R.id.imggd);
+        edttk.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String a = edttk.getText().toString();
+                adapter.searchts(a);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         loadrecy();
         fls.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +84,7 @@ public class SachFragment extends Fragment {
                 TextInputEditText edts = view.findViewById(R.id.edts);
                 TextInputEditText edgs = view.findViewById(R.id.edgs);
                 TextInputEditText edanh = view.findViewById(R.id.edanh);
+                TextInputEditText edtnxb = view.findViewById(R.id.edtnxb);
                 Button btnts = view.findViewById(R.id.btnts);
                 Spinner spnmls = view.findViewById(R.id.spnmls);
                 btnts.setOnClickListener(new View.OnClickListener() {
@@ -66,12 +93,13 @@ public class SachFragment extends Fragment {
                         String tens = edts.getText().toString();
                         String anh = edanh.getText().toString();
                         String gts = edgs.getText().toString();
-                        if (tens.equals("") || anh.equals("") || gts.equals("")) {
+                        String nxb = edtnxb.getText().toString();
+                        if (tens.equals("") || anh.equals("") || gts.equals("") || nxb.equals("")) {
                             Toast.makeText(getActivity(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                         } else{
                             HashMap<String, Object> hsTV = (HashMap<String, Object>) spnmls.getSelectedItem();
                             String maloai = String.valueOf(hsTV.get("maloai"));
-                            boolean check = dao.adds(getActivity(), edts.getText().toString(), Integer.parseInt(edgs.getText().toString()), edanh.getText().toString(), Integer.parseInt(maloai));
+                            boolean check = dao.adds(getActivity(), edts.getText().toString(), Integer.parseInt(edgs.getText().toString()), edanh.getText().toString(), Integer.parseInt(edtnxb.getText().toString()), Integer.parseInt(maloai));
                             if (check) {
                                 Toast.makeText(getActivity(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
                                 loadrecy();

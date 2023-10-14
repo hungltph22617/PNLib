@@ -5,9 +5,37 @@ public class sach {
     private String tens;
     private int gts;
     private String anh;
+    private int namxb;
     private int mls;
     private String tls;
     private int soluongdamuon;
+
+    public sach(int mas, String tens, int gts, String anh, int namxb, int mls, String tls) {
+        this.mas = mas;
+        this.tens = tens;
+        this.gts = gts;
+        this.anh = anh;
+        this.namxb = namxb;
+        this.mls = mls;
+        this.tls = tls;
+    }
+
+    public sach(int mas, String tens, int gts, String anh, int namxb, int mls) {
+        this.mas = mas;
+        this.tens = tens;
+        this.gts = gts;
+        this.anh = anh;
+        this.namxb = namxb;
+        this.mls = mls;
+    }
+
+    public int getNamxb() {
+        return namxb;
+    }
+
+    public void setNamxb(int namxb) {
+        this.namxb = namxb;
+    }
 
     public sach(int mas, String tens, int gts, String anh, int mls, String tls) {
         this.mas = mas;

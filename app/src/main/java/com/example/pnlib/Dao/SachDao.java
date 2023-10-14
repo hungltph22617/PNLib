@@ -22,7 +22,8 @@ public class SachDao {
                         cursor.getString(1),
                         cursor.getInt(2),
                         cursor.getString(3),
-                        cursor.getInt(4)));
+                        cursor.getInt(4),
+                        cursor.getInt(5)));
             }
         }
         return list;
@@ -30,7 +31,7 @@ public class SachDao {
     public ArrayList<sach> Listsach_tenloai(Context context) {
         ArrayList<sach> list = new ArrayList<>();
         DBHelper DBHelper = new DBHelper(context);
-        Cursor cursor = DBHelper.Getdata("SELECT sc.masach,sc.tensach,sc.giathue, sc.anh,ls.maloai,ls.tenloai FROM SACH sc,LOAISACH ls WHERE sc.maloai=ls.maloai;");
+        Cursor cursor = DBHelper.Getdata("SELECT sc.masach,sc.tensach,sc.giathue, sc.anh, sc.namxb ,ls.maloai,ls.tenloai FROM SACH sc,LOAISACH ls WHERE sc.maloai=ls.maloai;");
         if (cursor.getCount() != 0) {
             while (cursor.moveToNext()) {
                 list.add(new sach(
@@ -39,18 +40,20 @@ public class SachDao {
                         cursor.getInt(2),
                         cursor.getString(3),
                         cursor.getInt(4),
-                        cursor.getString(5)));
+                        cursor.getInt(5),
+                        cursor.getString(6)));
             }
         }
         return list;
     }
-    public boolean adds(Context context, String tensach, int giathue, String anh, int maloai) {
+    public boolean adds(Context context, String tensach, int giathue, String anh, int namxb, int maloai) {
         DBHelper DBHelper = new DBHelper(context);
         SQLiteDatabase db = DBHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("tensach", tensach);
         contentValues.put("giathue", giathue);
         contentValues.put("anh", anh);
+        contentValues.put("namxb", namxb);
         contentValues.put("maloai", maloai);
         long check = db.insert("SACH", null, contentValues);
         if (check == -1) {
@@ -82,6 +85,7 @@ public class SachDao {
             contentValues.put("tensach", sach.getTens());
             contentValues.put("giathue", sach.getGts());
             contentValues.put("anh", sach.getAnh());
+            contentValues.put("namxb", sach.getNamxb());
             contentValues.put("maloai", sach.getMls());
             long check = db.update("SACH", contentValues, "masach =?", new String[]{masach});
             if (check == -1) {

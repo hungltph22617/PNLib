@@ -5,23 +5,69 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.SachFragment">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:id="@+id/recybook"
-            android:padding="10dp"
-            android:layout_height="match_parent"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:id="@+id/flbook"
-            android:layout_gravity="bottom|end"
-            android:layout_marginBottom="30dp"
-            android:layout_marginEnd="30dp"
-            android:src="@drawable/add"
-            android:backgroundTint="#808000"
-            android:layout_height="wrap_content"/>
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/imgtd"
+                    android:src="@drawable/tangdan"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+                <ImageView
+                    android:id="@+id/imggd"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/giamdan"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:background="@drawable/backitem"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/search"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
+                <EditText
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:id="@+id/edttk"
+                    android:hint="Tìm kiếm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:id="@+id/recybook"
+                android:padding="10dp"
+                android:layout_height="match_parent"/>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:id="@+id/flbook"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="30dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/add"
+                android:backgroundTint="#808000"
+                android:layout_height="wrap_content"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 </FrameLayout>

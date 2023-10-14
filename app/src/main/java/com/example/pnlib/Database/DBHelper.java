@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String NAME_DB = "DuanmauLTMT";
-    public static final int VERSION_DB = 2;
+    public static final int VERSION_DB = 3;
     public DBHelper(@Nullable Context context) {
         super(context, NAME_DB, null, VERSION_DB);
     }
@@ -38,6 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "tensach TEXT," +
                 "giathue INTEGER," +
                 "anh TEXT,"+
+                "namxb INTERGER,"+
                 "maloai INTEGER REFERENCES LOAISACH(maloai)," +
                 "tenloai TEXT)";
         db.execSQL(dbSach);
@@ -52,7 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "tienthue INTEGER)";
         db.execSQL(dbPhieuMuon);
         db.execSQL("INSERT INTO LOAISACH VALUES (1, 'Learn Java'),(2,'Learn Python'),(3, 'Learn Web')");
-        db.execSQL("INSERT INTO SACH VALUES (1, 'Java 1', 2500, 'https://product.hstatic.net/200000343865/product/1_9544a3ba5bd64806ab59f7fd9fafcf13_ea18ba498dbf48458655f34dd7c049e8_master.jpg', 1, 'Learn Java')");
+        db.execSQL("INSERT INTO SACH VALUES (1, 'Java 1', 2500, 'https://product.hstatic.net/200000343865/product/1_9544a3ba5bd64806ab59f7fd9fafcf13_ea18ba498dbf48458655f34dd7c049e8_master.jpg', 1990, 1, 'Learn Java')");
         db.execSQL("INSERT INTO THUTHU VALUES ('admin','Lê Thế Hùng','hung123')");
         db.execSQL("INSERT INTO THANHVIEN VALUES (1,'Nguyễn Văn A','2000'),(2,'Nguyễn Văn B','2000')");
         db.execSQL("INSERT INTO PHIEUMUON VALUES (1,1,'admin', 1, '16/09/2023', 1, 2500)");

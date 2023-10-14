@@ -53,6 +53,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
         holder.txtgts.setText(String.valueOf(book.getGts()));
         holder.txtmls.setText(list.get(position).getMls()+":");
         holder.txttenls.setText(list.get(position).getTls());
+        holder.txtnxb.setText(String.valueOf(book.getNamxb()));
         holder.deles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,23 +102,26 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
                 TextInputEditText edtts = v.findViewById(R.id.edtts);
                 TextInputEditText edtgs = v.findViewById(R.id.edtgs);
                 TextInputEditText edtanh = v.findViewById(R.id.edtanh);
+                TextInputEditText edttnxb = v.findViewById(R.id.edttnxb);
                 Button btnss = v.findViewById(R.id.btnss);
                 Spinner spnnmls = v.findViewById(R.id.spnnmls);
                 edtts.setText(book.getTens());
                 edtgs.setText(String.valueOf(book.getGts()));
                 edtanh.setText(book.getAnh());
+                edttnxb.setText(String.valueOf(book.getNamxb()));
                 btnss.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String tens = edtts.getText().toString();
                         String gs = edtgs.getText().toString();
                         String anh = edtanh.getText().toString();
-                        if (tens.equals("") || anh.equals("") || gs.equals("")) {
+                        String nxb = edttnxb.getText().toString();
+                        if (tens.equals("") || anh.equals("") || gs.equals("") || nxb.equals("")) {
                             Toast.makeText(mContext, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                         }else{
                             HashMap<String, Object> hsTV = (HashMap<String, Object>) spnnmls.getSelectedItem();
                             int maloai = Integer.parseInt(String.valueOf(hsTV.get("maloai")));
-                            sach book = new sach(list.get(holder.getAdapterPosition()).getMas(), edtts.getText().toString(), Integer.parseInt(edtgs.getText().toString()), edtanh.getText().toString(), maloai);
+                            sach book = new sach(list.get(holder.getAdapterPosition()).getMas(), edtts.getText().toString(), Integer.parseInt(edtgs.getText().toString()), edtanh.getText().toString(), Integer.parseInt(edttnxb.getText().toString()), maloai);
                             SachDao dao = new SachDao();
                             String check = dao.updates(mContext, String.valueOf(list.get(holder.getAdapterPosition()).getMas()), book);
                             Toast.makeText(mContext, check, Toast.LENGTH_SHORT).show();
@@ -132,6 +136,35 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
             }
         });
     }
+//    public void searchts(String s){
+//        s = s.toUpperCase();
+//        int k = 0;
+//        for (int i =0; i <list.size(); i++){
+//            sach sach = list.get(i);
+//            String tens = sach.getTens().toUpperCase();
+//            if(tens.indexOf(s) >= 0){
+//                list.set(i, list.get(k));
+//                list.set(k, sach);
+//                k++;
+//            }
+//        }
+//        notifyDataSetChanged();
+//    }
+    public void searchts(String s){
+        s = s.toUpperCase();
+        int kitu = 0;
+        for (int i = 0; i < list.size(); i++) {
+            sach sach = list.get(i);
+            String tens = sach.getTens().toUpperCase();
+            if (tens.indexOf(s) >= 0){
+                list.set(i, list.get(kitu));
+                list.set(kitu, sach);
+                kitu++;
+            }
+        }
+        notifyDataSetChanged();
+    }
+//    public void tangdan()
     private void getDataSach(Spinner spnSach) {
         LoaisachDao dao1 = new LoaisachDao();
         ArrayList<loaisach> list = dao1.getLoaiSach(mContext);
@@ -156,7 +189,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView txtts, txtgts, txtmls, txttenls;
+        TextView txtts, txtgts, txtmls, txttenls, txtnxb;
         ImageView imgls, deles, edits;
 
         public ViewHolder(@NonNull View itemView) {
@@ -168,6 +201,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
             deles = itemView.findViewById(R.id.deles);
             edits = itemView.findViewById(R.id.edits);
             txttenls = itemView.findViewById(R.id.txttenls);
+            txtnxb = itemView.findViewById(R.id.txtnxb);
         }
     }
 }
