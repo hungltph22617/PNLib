@@ -10,46 +10,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_gravity="center"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/imgtd"
-                    android:src="@drawable/tangdan"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
-                <ImageView
-                    android:id="@+id/imggd"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/giamdan"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:background="@drawable/backitem"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/search"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"/>
-                <EditText
-                    android:textSize="20sp"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:id="@+id/edttk"
-                    android:hint="Tìm kiếm"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </LinearLayout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            <LinearLayout-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content">-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/imgtd"-->
+<!--                    android:src="@drawable/tangdan"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"/>-->
+<!--                <ImageView-->
+<!--                    android:id="@+id/imggd"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:src="@drawable/giamdan"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"/>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:background="@drawable/backitem"-->
+<!--                android:layout_margin="10dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+<!--                <ImageView-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:src="@drawable/search"-->
+<!--                    android:layout_width="35dp"-->
+<!--                    android:layout_height="35dp"/>-->
+<!--                <EditText-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textColorHint="@color/white"-->
+<!--                    android:id="@+id/edttk"-->
+<!--                    android:hint="Tìm kiếm"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"/>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

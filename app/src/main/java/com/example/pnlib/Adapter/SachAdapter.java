@@ -27,6 +27,8 @@ import com.example.pnlib.model.loaisach;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
@@ -138,33 +140,36 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder>{
     }
 //    public void searchts(String s){
 //        s = s.toUpperCase();
-//        int k = 0;
-//        for (int i =0; i <list.size(); i++){
+//        int kitu = 0;
+//        for (int i = 0; i < list.size(); i++) {
 //            sach sach = list.get(i);
 //            String tens = sach.getTens().toUpperCase();
 //            if(tens.indexOf(s) >= 0){
-//                list.set(i, list.get(k));
-//                list.set(k, sach);
-//                k++;
+//                list.set(i, list.get(kitu));
+//                list.set(kitu, sach);
+//                kitu++;
 //            }
 //        }
 //        notifyDataSetChanged();
 //    }
-    public void searchts(String s){
-        s = s.toUpperCase();
-        int kitu = 0;
-        for (int i = 0; i < list.size(); i++) {
-            sach sach = list.get(i);
-            String tens = sach.getTens().toUpperCase();
-            if (tens.indexOf(s) >= 0){
-                list.set(i, list.get(kitu));
-                list.set(kitu, sach);
-                kitu++;
-            }
-        }
-        notifyDataSetChanged();
-    }
-//    public void tangdan()
+//    public void tangdan() {
+//        Collections.sort(list, new Comparator<sach>() {
+//            @Override
+//            public int compare(sach o1, sach o2) {
+//                return o1.getGts() - o2.getGts();
+//            }
+//        });
+//        notifyDataSetChanged();
+//    }
+//    public void giamdan() {
+//        Collections.sort(list, new Comparator<sach>() {
+//            @Override
+//            public int compare(sach o1, sach o2) {
+//                return o2.getGts() - o1.getGts();
+//            }
+//        });
+//        notifyDataSetChanged();
+//    }
     private void getDataSach(Spinner spnSach) {
         LoaisachDao dao1 = new LoaisachDao();
         ArrayList<loaisach> list = dao1.getLoaiSach(mContext);
