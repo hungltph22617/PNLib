@@ -51,38 +51,38 @@ public class SachFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_book, container, false);
         recys = view.findViewById(R.id.recybook);
         fls = view.findViewById(R.id.flbook);
-//        edttk = view.findViewById(R.id.edttk);
-//        imgtd = view.findViewById(R.id.imgtd);
-//        imggd = view.findViewById(R.id.imggd);
-//        imgtd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                adapter.tangdan();
-//            }
-//        });
-//        imggd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                adapter.giamdan();
-//            }
-//        });
-//        edttk.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                String a = edttk.getText().toString();
-//                adapter.searchts(a);
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
+        edttk = view.findViewById(R.id.edttk);
+        imgtd = view.findViewById(R.id.imgtd);
+        imggd = view.findViewById(R.id.imggd);
+        imgtd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.tangdan();
+            }
+        });
+        imggd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.giamdan();
+            }
+        });
+        edttk.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String a = edttk.getText().toString();
+                adapter.searchts(a);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         loadrecy();
         fls.setOnClickListener(new View.OnClickListener() {
             @Override
